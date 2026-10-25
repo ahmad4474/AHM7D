@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AHM7D | مهاراتي</title>
+  <title>AHM7D | مهاراتي</title>
+<link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="inner-page">
+
+  <header class="site-header">
+    <a class="skills-corner-logo" href="index.html"
+   aria-label="العودة للرئيسية">
+  <img src="./شعار.png" alt="شعار أحمد">
+</a>
+    <nav class="site-nav" aria-label="التنقل الرئيسي">
+      <a href="index.html">الرئيسية</a>
+      <a href="work.html" aria-current="page">مهاراتي</a>
+      <a href="about.html">نبذة عني</a>
+      <a href="contact.html">تواصل</a>
+    </nav>
+  </header>
+
+  <main class="skills-page">
+
+    <div class="skills-heading">
+      <p lang="en" dir="ltr">MY SKILLS</p>
+      <h1>مهاراتي</h1>
+      <span class="skills-line" aria-hidden="true"></span>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- المونتاج -->
+      <details class="skill-card">
+        <summary>
+          <svg class="skill-icon" viewBox="0 0 64 64"
+               fill="none" stroke="currentColor" stroke-width="2"
+               aria-hidden="true">
+            <rect x="7" y="12" width="50" height="40" rx="6"/>
+            <path d="M16 12v40M48 12v40M7 24h9M7 40h9M48 24h9M48 40h9"/>
+            <path d="m27 24 13 8-13 8Z"/>
+          </svg>
+
+          <h2>المونتاج</h2>
+          <span class="skill-hint">البرامج اللي بستخدمها</span>
+          <span class="skill-toggle" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="skill-details">
+          <div class="skill-app" lang="en" dir="ltr">
+            Adobe Premiere Pro
+          </div>
+          <div class="skill-app" lang="en" dir="ltr">
+            CapCut
+          </div>
+        </div>
+      </details>
+
+      <!-- التصميم -->
+      <details class="skill-card">
+        <summary>
+          <svg class="skill-icon" viewBox="0 0 64 64"
+               fill="none" stroke="currentColor" stroke-width="2"
+               aria-hidden="true">
+            <path d="M32 7 14 34l9 18h18l9-18Z"/>
+            <path d="M32 7v24M23 52v6h18v-6"/>
+            <circle cx="32" cy="35" r="4"/>
+            <path d="M7 12h15M42 12h15"/>
+            <circle cx="7" cy="12" r="3"/>
+            <circle cx="57" cy="12" r="3"/>
+          </svg>
+
+          <h2>التصميم</h2>
+          <span class="skill-hint">البرامج اللي بصمم عليها</span>
+          <span class="skill-toggle" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="skill-details">
+          <div class="skill-app" lang="en" dir="ltr">
+            Adobe Illustrator
+          </div>
+          <div class="skill-app" lang="en" dir="ltr">
+            Canva
+          </div>
+        </div>
+      </details>
+
+      <!-- الألعاب -->
+      <details class="skill-card">
+        <summary>
+          <svg class="skill-icon" viewBox="0 0 64 64"
+               fill="none" stroke="currentColor" stroke-width="2"
+               aria-hidden="true">
+            <path d="M21 18h22c7 0 10 7 12 15l3 12c2 8-5 11-10 5l-8-9H24l-8 9C11 56 4 53 6 45l3-12c2-8 5-15 12-15Z"/>
+            <path d="M20 26v12M14 32h12"/>
+            <circle cx="43" cy="28" r="2"/>
+            <circle cx="49" cy="34" r="2"/>
+          </svg>
+
+          <h2>الألعاب</h2>
+          <span class="skill-hint">الألعاب اللي بلعبها</span>
+          <span class="skill-toggle" aria-hidden="true">+</span>
+        </summary>
+
+        <div class="skill-details">
+          <div class="skill-app" lang="en" dir="ltr">
+            GTA V
+          </div>
+          <div class="skill-app" lang="en" dir="ltr">
+            PUBG
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <a class="back-link skills-back" href="index.html">
+      العودة للرئيسية ←
+    </a>
+
+  </main>
+  <script>
+  const cards = document.querySelectorAll(".skill-card");
+
+  cards.forEach((card) => {
+    card.addEventListener("toggle", () => {
+      if (card.open) {
+        cards.forEach((otherCard) => {
+          if (otherCard !== card) {
+            otherCard.open = false;
+          }
+        });
+      }
+    });
+  });
+</script>
+<script>
+  // تحديد بطاقة المونتاج
+  const editingCard = Array.from(
+    document.querySelectorAll(".skill-card")
+  ).find(card =>
+    card.querySelector("h2")?.textContent.trim() === "المونتاج"
+  );
+
+  if (editingCard) {
+    const websites = {
+      "Adobe Premiere Pro": "https://www.adobe.com/products/premiere.html",
+      "CapCut": "https://www.capcut.com/"
+    };
+
+    editingCard.querySelectorAll(".skill-app").forEach(app => {
+      const name = app.textContent.replace("↗", "").trim();
+      const website = websites[name];
+
+      if (!website) return;
+
+      const link = document.createElement("a");
+
+      link.className = app.className;
+      link.innerHTML = app.innerHTML;
+      link.href = website;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.lang = "en";
+      link.dir = "ltr";
+      link.title = "فتح موقع " + name;
+
+      app.replaceWith(link);
+    });
+  }
+</script>
+<script>
+  // تحديد بطاقة التصميم
+  const designCard = Array.from(
+    document.querySelectorAll(".skill-card")
+  ).find(card =>
+    card.querySelector("h2")?.textContent.trim() === "التصميم"
+  );
+
+  if (designCard) {
+    const designWebsites = {
+      "Adobe Illustrator": "https://www.adobe.com/products/illustrator.html",
+      "Canva": "https://www.canva.com/"
+    };
+
+    designCard.querySelectorAll(".skill-app").forEach(app => {
+      const name = app.textContent.replace("↗", "").trim();
+      const website = designWebsites[name];
+
+      if (!website) return;
+
+      const link = document.createElement("a");
+
+      link.className = app.className;
+      link.innerHTML = app.innerHTML;
+      link.href = website;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.lang = "en";
+      link.dir = "ltr";
+      link.title = "فتح موقع " + name;
+
+      app.replaceWith(link);
+    });
+  }
+</script>
+<script>
+  // تحديد بطاقة الألعاب
+  const gamesCard = Array.from(
+    document.querySelectorAll(".skill-card")
+  ).find(card =>
+    card.querySelector("h2")?.textContent.trim() === "الألعاب"
+  );
+
+  if (gamesCard) {
+    const gameWebsites = {
+      "GTA V": "https://www.rockstargames.com/gta-v",
+      "PUBG": "https://www.pubg.com/"
+    };
+
+    gamesCard.querySelectorAll(".skill-app").forEach(app => {
+      const name = app.textContent.replace("↗", "").trim();
+      const website = gameWebsites[name];
+
+      if (!website) return;
+
+      const link = document.createElement("a");
+
+      link.className = app.className;
+      link.innerHTML = app.innerHTML;
+      link.href = website;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.lang = "en";
+      link.dir = "ltr";
+      link.title = "فتح موقع " + name;
+
+      app.replaceWith(link);
+    });
+  }
+</script>
+<script src="./effects.js"></script>
+</body>
+</html>

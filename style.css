@@ -1,0 +1,2213 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #493257;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 40px 20px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* الاسم الخفيف بالخلفية */
+.background-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+
+  direction: ltr;
+  white-space: nowrap;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(80px, 23vw, 420px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14);
+
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+
+/* الجملة والشعار تحت بعض */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* الجملة فوق الشعار */
+.hero-content h1 {
+  margin: 0;
+  color: #e0c5ef;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* الخط الصغير تحت الجملة */
+.small-line {
+  width: 55px;
+  height: 2px;
+  margin: 20px 0 28px;
+  background-color: #c595e0;
+}
+
+/* الشعار */
+.hero-logo {
+  width: 280px;
+  max-width: 55vw;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}/* حركة الجملة من فوق */
+.hero-content h1 {
+  animation: title-enter 1s ease-out both;
+}
+
+/* الخط يتمدد من النص */
+.small-line {
+  animation: line-enter 0.8s ease-out 0.2s both;
+}
+
+/* الشعار يقرب من تحت ويستقر بمكانه */
+.hero-logo {
+  animation: logo-enter 1.2s ease-out 0.15s both;
+}
+
+/* الاسم الكبير يتجمع باتجاه مكانه */
+.background-name {
+  animation: name-enter 1.5s ease-out both;
+}
+
+@keyframes title-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes line-enter {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes logo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(90px) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes name-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-5deg) scale(1.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-5deg) scale(1);
+  }
+}
+
+/* احترام إعداد تقليل الحركة على جهاز الزائر */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content h1,
+  .small-line,
+  .hero-logo,
+  .background-name {
+    animation: none;
+  }
+}/* التنقل بسلاسة بين أقسام الصفحة */
+html {
+  scroll-behavior: smooth;
+}
+
+/* زر تعرّف علي */
+.about-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+
+  margin-top: 28px;
+  padding: 10px 12px 10px 28px;
+
+  color: white;
+  background: linear-gradient(135deg, #8454a4, #56356c);
+  border: 1px solid #b98bd3;
+  border-radius: 50px;
+
+  text-decoration: none;
+  font-size: 18px;
+
+  animation: logo-enter 1s ease-out 0.4s both;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* الدائرة اللي فيها السهم */
+.about-button span {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+
+  background-color: #e0c5ef;
+  color: #493257;
+  font-size: 24px;
+}
+
+.about-button:hover {
+  box-shadow: 0 0 24px rgba(224, 197, 239, 0.25);
+}
+
+a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 6px;
+}
+
+/* قسم التعريف */
+.about-section {
+  padding: 100px 24px;
+  background-color: #3d2a49;
+  text-align: center;
+}
+
+.section-label {
+  margin: 0 0 12px;
+  color: #e0c5ef;
+  font-size: 16px;
+}
+
+.about-section h2 {
+  margin: 0 0 24px;
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.about-text {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 32px;
+  color: #e0c5ef;
+  text-underline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .about-button {
+    animation: none;
+    transition: none;
+  }
+}/* خلفية الغرفة */
+.hero {
+  background-image: url("./room.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  /* رفع الشعار والكتابة فوق منطقة المكتب */
+  align-items: flex-start;
+  padding-top: 16vh;
+  padding-bottom: 40px;
+}
+
+/* مكان الاسم الخفيف وراء الشعار */
+.background-name {
+  top: 40%;
+}
+
+/* حجم الشعار حسب ارتفاع الشاشة */
+.hero-logo {
+  width: clamp(150px, 28vh, 280px);
+  max-width: 55vw;
+}
+
+/* ترتيب الواجهة على الموبايل */
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 18vh;
+  }
+
+  .background-name {
+    top: 40%;
+  }
+}/* نقل الخلفية لطبقة مستقلة حتى تتحرك لحالها */
+.hero {
+  background-image: none;
+}
+
+/* خلفية الغرفة + طبقة مقدمة الست أب */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("./room.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+
+  pointer-events: none;
+  animation: room-enter 1.6s ease-out both;
+}
+
+/* الغرفة وراء كل العناصر */
+.hero::before {
+  z-index: -3;
+}
+
+/* الجزء السفلي أمام الاسم، فيخفي الحروف خلفه */
+.hero::after {
+  z-index: -1;
+  clip-path: inset(62% 0 0 0);
+}
+
+/* اسم أحمد بين الخلفية ومقدمة الست أب */
+.background-name {
+  z-index: -2;
+  top: 51%;
+
+  font-size: clamp(65px, 19vw, 360px);
+  letter-spacing: 0.12em;
+
+  /* موازنة الفراغ بعد آخر حرف */
+  padding-left: 0.12em;
+}
+
+/* الشعار والجملة والزر أمام الخلفية */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* الغرفة تبدأ أبعد شوي وبعدين تقرب */
+@keyframes room-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* إلغاء الحركة لمن فعّل تقليل الحركة بجهازه */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+}.background-name {
+  letter-spacing: 0.25em;
+  padding-left: 0.25em;
+  font-size: clamp(48px, 15vw, 280px);
+}/* رفع اسم AHM7D */
+.background-name {
+  top: 36%;
+}
+
+/* تكبير الشعار وإضافة توهج خفيف من تحته */
+.hero-logo {
+  width: clamp(200px, 35vh, 350px);
+  max-width: 65vw;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 14px 12px rgba(186, 110, 245, 0.45))
+    drop-shadow(0 28px 24px rgba(160, 80, 220, 0.25));
+}.site-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  padding: 24px 5%;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 44px);
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 8px 0;
+  color: #e4d4ed;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: white;
+}/* دخول أزرار القائمة */
+.site-nav a {
+  animation: nav-enter 0.8s ease-out both;
+}
+
+/* تأخير بسيط بين كل زر والثاني */
+.site-nav a:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.site-nav a:nth-child(2) {
+  animation-delay: 0.30s;
+}
+
+.site-nav a:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+.site-nav a:nth-child(4) {
+  animation-delay: 0.60s;
+}
+
+/* تبدأ فوق وأصغر شوي، وتستقر بمكانها */
+@keyframes nav-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-35px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a {
+    animation: none;
+  }
+}.hero-content h1 {
+  color: #ffffff;
+  -webkit-text-stroke: 0.6px #c77dff;
+
+  text-shadow:
+    0 0 5px rgba(199, 125, 255, 0.9),
+    0 0 12px rgba(179, 85, 255, 0.65),
+    0 0 24px rgba(160, 60, 240, 0.35);
+}/* تكبير خفيف بدون التأثير على حركة الدخول */
+.hero-logo,
+.hero-content h1,
+.about-button,
+.site-nav a,
+.brand-link,
+.home-icon,
+.back-link {
+  scale: 1;
+  transition:
+    scale 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* التأثير للأجهزة اللي فيها ماوس */
+@media (hover: hover) and (pointer: fine) {
+  .hero-logo:hover,
+  .hero-content h1:hover,
+  .about-button:hover,
+  .site-nav a:hover,
+  .brand-link:hover,
+  .home-icon:hover,
+  .back-link:hover {
+    scale: 1.05;
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo,
+  .hero-content h1,
+  .about-button,
+  .site-nav a,
+  .brand-link,
+  .home-icon,
+  .back-link {
+    scale: 1 !important;
+    transition: none;
+  }
+}/* صفحة المهارات */
+.skills-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 24px;
+}
+
+/* عنوان الصفحة */
+.skills-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.skills-heading p {
+  color: #d8b4ef;
+  letter-spacing: 5px;
+  font-size: 14px;
+}
+
+.skills-heading h1 {
+  margin: 12px 0 20px;
+  font-size: clamp(40px, 6vw, 70px);
+  color: white;
+  text-shadow: 0 0 18px rgba(199, 125, 255, 0.4);
+}
+
+.skills-line {
+  display: block;
+  width: 70px;
+  height: 3px;
+  margin: auto;
+  background: #c77dff;
+  border-radius: 10px;
+}
+
+/* ترتيب البطاقات */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* بطاقة المهارة */
+.skill-card {
+  width: 100%;
+  max-width: 360px;
+  justify-self: center;
+
+  border: 1px solid #a476be;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+
+  transition:
+    scale 0.25s ease,
+    box-shadow 0.25s ease;
+
+  animation: skill-enter 0.9s ease-out both;
+}
+
+/* الجزء القابل للضغط */
+.skill-card summary {
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  list-style: none;
+  border-radius: 20px;
+}
+
+.skill-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.skill-card summary:focus-visible {
+  outline: 2px solid #e0c5ef;
+  outline-offset: 5px;
+}
+
+.skill-symbol {
+  display: block;
+  color: #d8b4ef;
+  font-size: 52px;
+  text-shadow: 0 0 16px rgba(199, 125, 255, 0.4);
+}
+
+.skill-card h2 {
+  margin: 20px 0 12px;
+  font-size: 28px;
+}
+
+.skill-hint {
+  display: block;
+  color: #dfcfe8;
+  font-size: 16px;
+}
+
+.skill-toggle {
+  display: inline-block;
+  margin-top: 20px;
+  color: #d8b4ef;
+  font-size: 28px;
+  transition: transform 0.25s ease;
+}
+
+/* تتحول علامة + لعلامة إغلاق */
+.skill-card[open] .skill-toggle {
+  transform: rotate(45deg);
+}
+
+/* البرامج داخل البطاقة */
+.skill-details {
+  display: grid;
+  gap: 12px;
+  padding: 0 24px 24px;
+}
+
+.skill-app {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(199, 125, 255, 0.09);
+  border: 1px solid rgba(199, 125, 255, 0.2);
+  text-align: center;
+}
+
+/* تأثير الماوس */
+@media (hover: hover) and (pointer: fine) {
+  .skill-card:hover {
+    scale: 1.025;
+    box-shadow: 0 0 25px rgba(199, 125, 255, 0.15);
+  }
+}
+
+@keyframes skill-enter {
+  from {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skill-toggle {
+    animation: none;
+    transition: none;
+  }
+
+  .skill-card:hover {
+    scale: 1;
+  }
+}/* نفس خلفية الرئيسية للصفحات الداخلية */
+body.inner-page {
+  min-height: 100vh;
+  background-color: #493257;
+  background-image: url("./room.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* تغميق البطاقات شوي عشان الكلام يضل واضح */
+.skill-card {
+  background: rgba(49, 31, 61, 0.85);
+}/* خلفية بنفسجية مثل بروفة المهارات */
+body.inner-page {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+
+  background-color: #21182d;
+  background-image:
+    radial-gradient(
+      ellipse at bottom left,
+      rgba(158, 75, 215, 0.32),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(139, 70, 195, 0.28),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #21182d, #35243f);
+
+  background-attachment: fixed;
+}
+
+/* اسمك كبير وخفيف وراء المحتوى */
+body.inner-page::before {
+  content: "AHM7D";
+
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+
+  direction: ltr;
+  white-space: nowrap;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(80px, 24vw, 400px);
+  letter-spacing: 0.04em;
+
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(210, 165, 240, 0.1);
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* البطاقات شبه شفافة */
+.skill-card {
+  background: rgba(55, 37, 69, 0.55);
+  border-color: rgba(199, 150, 230, 0.65);
+  backdrop-filter: blur(8px);
+}/* خلفية صفحة المهارات */
+body.inner-page {
+  background: #21182d url("./skills-bg.png.png")
+    center center / cover no-repeat fixed;
+}
+
+/* منع تكرار الاسم لأنه موجود بالصورة */
+body.inner-page::before {
+  content: none;
+}/* ثلاث بطاقات جنب بعض */
+.skills-page .skills-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.skills-page .skill-card {
+  max-width: none;
+  min-width: 0;
+  scale: 1;
+
+  animation: skills-card-enter 0.9s ease-out both;
+
+  transition:
+    scale 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* دخول البطاقات بالتتابع */
+.skills-page .skill-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.skills-page .skill-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.skills-page .skill-card:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+/* أيقونات الأقسام */
+.skill-icon {
+  display: block;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto;
+
+  color: #dfbaff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter: drop-shadow(0 0 8px rgba(199, 125, 255, 0.35));
+  transition: scale 0.25s ease;
+}
+
+/* حركة العنوان والخط */
+.skills-heading p {
+  animation: skills-title-enter 0.8s ease-out both;
+}
+
+.skills-heading h1 {
+  animation: skills-title-enter 0.9s ease-out 0.1s both;
+}
+
+.skills-line {
+  animation: line-enter 0.8s ease-out 0.25s both;
+}
+
+/* ظهور البرامج عند فتح البطاقة */
+.skill-card[open] .skill-app {
+  animation: skills-app-enter 0.4s ease-out both;
+}
+
+.skill-card[open] .skill-app:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.skills-page .skill-app {
+  transition:
+    scale 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* تمييز البطاقة المفتوحة */
+.skills-page .skill-card[open] {
+  border-color: #dfbaff;
+  box-shadow: 0 0 24px rgba(199, 125, 255, 0.15);
+}
+
+.skills-back {
+  display: table;
+  margin: 40px auto 0;
+  animation: skills-app-enter 0.8s ease-out 0.6s both;
+}
+
+/* تفاعل الماوس */
+@media (hover: hover) and (pointer: fine) {
+  .skills-page .skill-card:hover {
+    scale: 1.025;
+    border-color: #e0c5ef;
+    box-shadow: 0 0 28px rgba(199, 125, 255, 0.2);
+  }
+
+  .skill-card summary:hover .skill-icon {
+    scale: 1.08;
+  }
+
+  .skills-page .skill-app:hover {
+    scale: 1.03;
+    background-color: rgba(199, 125, 255, 0.18);
+  }
+}
+
+@keyframes skills-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(55px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skills-title-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skills-app-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ترتيب البطاقات على الشاشات الصغيرة */
+@media (max-width: 760px) {
+  .skills-page .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-page .skill-card {
+    max-width: 440px;
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .skills-page .skill-card,
+  .skills-heading p,
+  .skills-heading h1,
+  .skills-line,
+  .skill-card[open] .skill-app,
+  .skills-back {
+    animation: none;
+  }
+
+  .skills-page .skill-card,
+  .skills-page .skill-app,
+  .skill-icon {
+    transition: none;
+  }
+
+  .skills-page .skill-card:hover,
+  .skills-page .skill-app:hover,
+  .skill-card summary:hover .skill-icon {
+    scale: 1;
+  }
+}/* دخول محتوى صفحة مهاراتي */
+.skills-page {
+  animation: skills-page-enter 0.9s ease-out both;
+}
+
+@keyframes skills-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .skills-page {
+    animation: none;
+  }
+}/* شعار صفحة مهاراتي فوق عاليمين */
+.skills-corner-logo {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  display: block;
+  width: 54px;
+  z-index: 11;
+  transition: scale 0.25s ease;
+}
+
+.skills-corner-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 6px rgba(199, 125, 255, 0.45));
+}
+
+/* توفير مساحة للشعار جنب القائمة */
+.inner-page .site-header:has(.skills-corner-logo) {
+  min-height: 90px;
+  padding-right: 100px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skills-corner-logo:hover {
+    scale: 1.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-corner-logo {
+    transition: none;
+  }
+
+  .skills-corner-logo:hover {
+    scale: 1;
+  }
+}/* شعار مستقل بصفحة مهاراتي */
+.skills-corner-logo {
+  position: absolute;
+  top: 45px;
+  right: 5%;
+  width: 65px;
+  display: block;
+  z-index: 11;
+
+  animation: nav-enter 0.8s ease-out both;
+  transition: scale 0.25s ease;
+}
+
+.skills-corner-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 5px 8px rgba(199, 125, 255, 0.4));
+}
+
+/* مساحة للشعار بجانب القائمة */
+.inner-page .site-header:has(.skills-corner-logo) {
+  min-height: 120px;
+  padding-right: calc(5% + 90px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skills-corner-logo:hover {
+    scale: 1.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-corner-logo {
+    animation: none;
+    transition: none;
+  }
+
+  .skills-corner-logo:hover {
+    scale: 1;
+  }
+}a.skill-app {
+  display: block;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.skill-app:focus-visible {
+  outline: 2px solid #dfbaff;
+  outline-offset: 4px;
+}.skills-page .back-link {
+  display: none;
+}/* صفحة نبذة عني */
+.bio-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* عنوان الصفحة */
+.bio-heading {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: bio-enter 0.8s ease-out both;
+}
+
+.bio-heading > p {
+  color: #d8b4ef;
+  font-size: 14px;
+  letter-spacing: 5px;
+}
+
+.bio-heading h1 {
+  margin: 12px 0 20px;
+  font-size: clamp(38px, 6vw, 64px);
+  color: white;
+  text-shadow: 0 0 18px rgba(199, 125, 255, 0.4);
+}
+
+.bio-heading > span {
+  display: block;
+  width: 70px;
+  height: 3px;
+  margin: auto;
+  border-radius: 10px;
+  background: #c77dff;
+}
+
+/* مساحة التعريف */
+.bio-card {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: center;
+  gap: 45px;
+
+  padding: 45px;
+  border: 1px solid rgba(199, 150, 230, 0.6);
+  border-radius: 24px;
+  background: rgba(40, 27, 51, 0.8);
+  backdrop-filter: blur(8px);
+
+  animation: bio-enter 1s ease-out 0.15s both;
+}
+
+/* الشعار */
+.bio-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 12px 16px rgba(199, 125, 255, 0.3));
+
+  transition: scale 0.25s ease;
+}
+
+/* النص */
+.bio-label {
+  color: #d8b4ef;
+  margin: 0 0 10px;
+}
+
+.bio-text h2 {
+  margin: 0 0 20px;
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.5;
+}
+
+.bio-text > p {
+  font-size: 18px;
+  line-height: 2;
+}
+
+.bio-text h3 {
+  margin: 28px 0 10px;
+  color: #dfbaff;
+  font-size: 24px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bio-logo:hover {
+    scale: 1.05;
+  }
+}
+
+/* حركة دخول الصفحة */
+@keyframes bio-enter {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ترتيب الموبايل */
+@media (max-width: 700px) {
+  .bio-card {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 28px;
+  }
+
+  .bio-logo {
+    width: 140px;
+    margin: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-heading,
+  .bio-card {
+    animation: none;
+  }
+
+  .bio-logo {
+    transition: none;
+  }
+
+  .bio-logo:hover {
+    scale: 1;
+  }
+}/* توسيط قائمة الصفحات */
+.site-header,
+.inner-page .site-header:has(.skills-corner-logo) {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+}
+
+.site-header .site-nav {
+  width: 100%;
+  margin-inline: auto;
+  justify-content: center;
+}
+
+/* ترك مساحة للشعار على الشاشات الصغيرة */
+@media (max-width: 600px) {
+  .inner-page .site-header:has(.skills-corner-logo) {
+    padding-top: 115px;
+  }
+}/* مساحة صفحة نبذة عني */
+.ahmed-about {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 45px 24px 80px;
+}
+
+/* اسم أحمد فوق المربعين */
+.ahmed-name {
+  margin: 0 0 40px;
+  text-align: center;
+  font-size: clamp(38px, 6vw, 64px);
+  line-height: 1.4;
+  color: white;
+
+  text-shadow: 0 0 16px rgba(199, 125, 255, 0.4);
+  animation: ahmed-panel-enter 0.8s ease-out both;
+}
+
+/* الشعار يمين والتعريف على جنبه */
+.ahmed-panels {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* تنسيق مشترك للمربعين */
+.ahmed-logo-box,
+.ahmed-info-box {
+  min-width: 0;
+  border: 1px solid rgba(199, 150, 230, 0.65);
+  border-radius: 22px;
+  background: rgba(40, 27, 51, 0.82);
+  backdrop-filter: blur(8px);
+
+  animation: ahmed-panel-enter 0.9s ease-out both;
+}
+
+/* مربع الشعار المستقل */
+.ahmed-logo-box {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  animation-delay: 0.15s;
+}
+
+.ahmed-logo-box img {
+  display: block;
+  width: 85%;
+  height: auto;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 12px 18px rgba(199, 125, 255, 0.35));
+
+  transition: scale 0.25s ease;
+}
+
+/* مربع التعريف */
+.ahmed-info-box {
+  padding: clamp(24px, 3vw, 40px);
+  animation-delay: 0.3s;
+}
+
+.ahmed-info-box h2 {
+  margin: 0 0 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.ahmed-info-box h3 {
+  margin: 24px 0 10px;
+  font-size: 24px;
+  color: #dfbaff;
+}
+
+.ahmed-info-box p {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #eee5f4;
+}
+
+.ahmed-info-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* حركة الدخول */
+@keyframes ahmed-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تكبير الشعار بالماوس */
+@media (hover: hover) and (pointer: fine) {
+  .ahmed-logo-box img:hover {
+    scale: 1.05;
+  }
+}
+
+/* ترتيب الموبايل */
+@media (max-width: 700px) {
+  .ahmed-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .ahmed-logo-box {
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ahmed-name,
+  .ahmed-logo-box,
+  .ahmed-info-box {
+    animation: none;
+  }
+
+  .ahmed-logo-box img {
+    transition: none;
+  }
+
+  .ahmed-logo-box img:hover {
+    scale: 1;
+  }
+}/* تنزيل المربعين */
+.ahmed-about {
+  padding-top: 100px;
+}
+
+/* ترتيب الاسم فوق الشعار داخل المربع */
+.ahmed-logo-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 32px;
+}
+
+/* الاسم داخل المربع */
+.ahmed-logo-box .ahmed-name {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  text-align: center;
+}
+
+/* مساحة الشعار تحت الاسم */
+.ahmed-logo-box img {
+  width: 70%;
+  max-width: 250px;
+}.ahmed-about {
+  min-height: calc(100vh - 120px);
+  padding: 30px 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ahmed-panels {
+  width: 100%;
+  align-items: center;
+}/* تحريك الخلفية الحالية بدون تغيير الصورة أو لونها */
+body.inner-page:has(.skills-page) {
+  animation: skills-bg-slide 1.4s ease-out both;
+}
+
+@keyframes skills-bg-slide {
+  from {
+    background-position: center calc(50% + 45px);
+  }
+
+  to {
+    background-position: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page:has(.skills-page) {
+    animation: none;
+  }
+}/* حركة خلفية صفحة نبذة عني */
+body.inner-page:has(.ahmed-about) {
+  animation: about-bg-slide 1.4s ease-out both;
+}
+
+@keyframes about-bg-slide {
+  from {
+    background-position: center calc(50% + 45px);
+  }
+
+  to {
+    background-position: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page:has(.ahmed-about) {
+    animation: none;
+  }
+}/* تنزيل مربعات صفحة نبذة عني */
+.ahmed-panels {
+  position: relative;
+  top: 70px;
+}
+
+/* مساحة إضافية أسفل الصفحة */
+.ahmed-about {
+  padding-bottom: 100px;
+}.ahmed-panels {
+  top: 130px;
+}.ahmed-logo-box {
+  aspect-ratio: auto;
+}
+
+.ahmed-logo-box img.ahmed-portrait {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  filter: none;
+  border-radius: 18px;
+  border: 1px solid #b77aff;
+  box-shadow: 0 0 20px rgba(183, 122, 255, 0.2);
+}.ahmed-logo-box img.ahmed-portrait {
+  animation: portrait-enter 1s ease-out 0.4s both;
+  transition: scale 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes portrait-enter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ahmed-logo-box img.ahmed-portrait:hover {
+    scale: 1.04;
+    box-shadow: 0 0 30px rgba(183, 122, 255, 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ahmed-logo-box img.ahmed-portrait {
+    animation: none;
+    transition: none;
+  }
+
+  .ahmed-logo-box img.ahmed-portrait:hover {
+    scale: 1;
+  }
+}/* صفحة التواصل */
+.contact-page .contact-content,
+.contact-page .contact-content * {
+  box-sizing: border-box;
+}
+
+.contact-page .contact-content {
+  width: min(1100px, 100%);
+  min-height: calc(100svh - 120px);
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-page .contact-content h1 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(32px, 5vw, 52px);
+  text-shadow: 0 0 18px rgba(183, 122, 255, 0.45);
+  animation: contact-enter 0.8s ease-out both;
+}
+
+.contact-page .contact-intro {
+  margin: 0 0 36px;
+  color: #e1d2eb;
+  font-size: 18px;
+  animation: contact-enter 0.8s ease-out 0.1s both;
+}
+
+.contact-page .contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.contact-page .contact-card {
+  min-width: 0;
+  min-height: 210px;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  color: #fff;
+  text-decoration: none;
+  background: rgba(40, 27, 51, 0.82);
+  border: 1px solid rgba(199, 150, 230, 0.65);
+  border-radius: 22px;
+  backdrop-filter: blur(8px);
+
+  animation: contact-enter 0.9s ease-out both;
+  transition:
+    scale 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-page .contact-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.contact-page .contact-card:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.contact-page .contact-card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.contact-page .contact-label {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #dfbaff;
+}
+
+.contact-page .contact-value {
+  max-width: 100%;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.contact-page .contact-hint {
+  font-size: 14px;
+  color: #e1d2eb;
+}
+
+.contact-page .instagram-card:focus-visible {
+  outline: 3px solid #dfbaff;
+  outline-offset: 5px;
+}
+
+@keyframes contact-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-page .contact-card:hover {
+    scale: 1.03;
+    border-color: #c994ff;
+    box-shadow: 0 0 26px rgba(183, 122, 255, 0.25);
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-page .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page .contact-card {
+    min-height: 170px;
+  }
+
+  .contact-page .contact-content {
+    padding-top: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page .contact-content h1,
+  .contact-page .contact-intro,
+  .contact-page .contact-card {
+    animation: none;
+    transition: none;
+  }
+
+  .contact-page .contact-card:hover {
+    scale: 1;
+  }
+}/* تنزيل بطاقات التواصل */
+.contact-page .contact-cards {
+  position: relative;
+  top: 70px;
+}
+
+.contact-page .contact-content {
+  padding-bottom: 150px;
+}
+
+/* انتقال دخول البطاقات */
+.contact-page .contact-card {
+  animation: contact-card-enter 0.9s ease-out both;
+}
+
+.contact-page .contact-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.contact-page .contact-card:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.contact-page .contact-card:nth-child(3) {
+  animation-delay: 0.55s;
+}
+
+@keyframes contact-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(45px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* إظهار التركيز عند التنقل بالكيبورد */
+.contact-page .contact-card:focus-visible {
+  outline: 3px solid #dfbaff;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page .contact-card {
+    animation: none;
+  }
+}body.inner-page.contact-page {
+  animation: contact-background-enter 1.4s ease-out both;
+}
+
+@keyframes contact-background-enter {
+  from {
+    background-position: center calc(50% + 45px);
+  }
+
+  to {
+    background-position: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page.contact-page {
+    animation: none;
+  }
+}/* ضبط أحجام العناصر */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* تنسيق شاشات التلفون والتابلت */
+@media (max-width: 800px) {
+
+  /* روابط الصفحات */
+  .site-header,
+  .inner-page .site-header,
+  .inner-page .site-header:has(.skills-corner-logo) {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* مساحة للشعار الموجود فوق على اليمين */
+  .site-header:has(.skills-corner-logo),
+  .inner-page .site-header:has(.skills-corner-logo) {
+    padding-top: 100px;
+  }
+
+  .skills-corner-logo {
+    top: 20px;
+    right: 20px;
+    width: 55px;
+  }
+
+  .site-header .site-nav,
+  .site-nav {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 18px;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+
+  .site-nav a {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  /* الخلفيات */
+  body.inner-page {
+    background-attachment: scroll;
+  }
+
+  /* الصفحة الرئيسية */
+  .hero {
+    min-height: 75svh;
+    height: auto;
+    padding: 45px 20px;
+    background-attachment: scroll;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(24px, 7vw, 38px);
+  }
+
+  .hero-logo {
+    width: min(65vw, 280px);
+    height: auto;
+  }
+
+  .background-name {
+    left: 50%;
+    right: auto;
+    width: max-content;
+    max-width: 100%;
+    transform: translateX(-50%);
+    font-size: clamp(32px, 10vw, 70px);
+    letter-spacing: 0.15em;
+    text-align: center;
+    direction: ltr;
+  }
+
+  /* صفحة مهاراتي */
+  .skills-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    padding: 35px 16px 60px;
+  }
+
+  .skill-card {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* صفحة نبذة عني */
+  .ahmed-about {
+    width: 100%;
+    min-height: auto;
+    padding: 40px 16px 60px;
+  }
+
+  .ahmed-panels {
+    position: static;
+    top: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .ahmed-logo-box,
+  .ahmed-info-box {
+    width: 100%;
+    max-width: 480px;
+    min-width: 0;
+    justify-self: center;
+    padding: 24px;
+  }
+
+  .ahmed-logo-box .ahmed-name {
+    font-size: 30px;
+  }
+
+  .ahmed-info-box p {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  /* صفحة التواصل */
+  .contact-page .contact-content {
+    min-height: auto;
+    padding: 40px 16px 60px;
+  }
+
+  .contact-page .contact-cards {
+    position: static;
+    top: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .contact-page .contact-card {
+    width: 100%;
+    max-width: 480px;
+    min-height: 170px;
+    justify-self: center;
+  }
+
+  .contact-page .contact-value {
+    overflow-wrap: anywhere;
+  }
+}.ahmed-info-box h3 {
+  color: #ffffff;
+}/* إضاءة تتحرك مع الماوس */
+.pointer-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 30;
+
+  background: radial-gradient(
+    circle,
+    rgba(183, 122, 255, 0.14) 0%,
+    rgba(183, 122, 255, 0.05) 40%,
+    transparent 70%
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ميلان البطاقات منفصل عن حركة دخولها */
+.interactive-card {
+  rotate: var(--card-axis, 1 0 0) var(--card-angle, 0deg);
+  transition:
+    rotate 0.2s ease-out,
+    scale 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    border-color: #c994ff;
+    box-shadow: 0 0 25px rgba(183, 122, 255, 0.25);
+  }
+}
+
+/* لمعة عند اللمس على التلفون */
+@media (hover: none) {
+  .interactive-card:active {
+    border-color: #c994ff;
+    box-shadow: 0 0 25px rgba(183, 122, 255, 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pointer-glow {
+    display: none;
+  }
+
+  .interactive-card {
+    rotate: none;
+    transition: none;
+  }
+}/* شاشة الدخول بالشعار */
+.logo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  place-items: center;
+  background: #21182d;
+  pointer-events: none;
+}
+
+.logo-intro.is-active {
+  display: grid;
+  animation: intro-screen-out 0.6s ease 1.5s forwards;
+}
+
+.intro-pieces {
+  position: relative;
+  width: min(240px, 60vw);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 0 18px rgba(183, 122, 255, 0.5));
+}
+
+.intro-piece {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  animation: intro-assemble 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.piece-one {
+  clip-path: inset(0 50% 50% 0);
+  --start-x: -90px;
+  --start-y: -90px;
+}
+
+.piece-two {
+  clip-path: inset(0 0 50% 50%);
+  --start-x: 90px;
+  --start-y: -90px;
+}
+
+.piece-three {
+  clip-path: inset(50% 50% 0 0);
+  --start-x: -90px;
+  --start-y: 90px;
+}
+
+.piece-four {
+  clip-path: inset(50% 0 0 50%);
+  --start-x: 90px;
+  --start-y: 90px;
+}
+
+@keyframes intro-assemble {
+  from {
+    opacity: 0;
+    transform: translate(var(--start-x), var(--start-y)) scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes intro-screen-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* تأخير حركات الرئيسية لحد ما يتجمّع الشعار */
+body.intro-playing .site-header,
+body.intro-playing .site-header *,
+body.intro-playing .hero,
+body.intro-playing .hero *,
+body.intro-playing .hero::before,
+body.intro-playing .hero::after {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-intro.is-active {
+    display: none;
+  }
+}/* تجميع أبطأ وفتح أسرع */
+.logo-intro.is-active {
+  overflow: hidden;
+  animation: intro-screen-out 0.2s ease 2.05s forwards;
+}
+
+.logo-intro .intro-piece {
+  animation: intro-many-pieces 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes intro-many-pieces {
+  from {
+    opacity: 0;
+    transform:
+      translate(var(--start-x), var(--start-y))
+      rotate(var(--start-rotation))
+      scale(0.6);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}/* إظهار خلفية الموقع خلف التجميع */
+#logo-intro {
+  background: transparent;
+  pointer-events: none;
+}
+
+#logo-intro.is-active {
+  display: block;
+  animation: none;
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
+}
+
+/* وضع القطع في مكان الشعار الرئيسي */
+#logo-intro .intro-pieces {
+  position: fixed;
+  margin: 0;
+  aspect-ratio: auto;
+  filter: none;
+}
+
+#logo-intro .intro-piece {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  animation: intro-many-pieces 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* تثبيت الحاوية حتى يتطابق مكان التجميع مع الشعار */
+.hero .hero-content {
+  animation: none;
+}
+
+/* إلغاء انتقال دخول الشعار الأصلي */
+.hero .hero-logo {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
+}
+
+/* إخفاء الأصلي أثناء التجميع مع الاحتفاظ بمكانه */
+body.logo-assembling .hero-logo {
+  visibility: hidden;
+}.director-launch {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  z-index: 100;
+  padding: 12px 18px;
+  border: 1px solid #c994ff;
+  border-radius: 14px;
+  background: #281b33;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 0 20px #b77aff33;
+}
+
+body.logo-assembling .director-launch {
+  visibility: hidden;
+}
+
+.director-panel {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: min(620px, calc(100% - 24px));
+  padding: 22px;
+  border: 1px solid #c994ff;
+  border-radius: 20px;
+  background: rgba(28, 18, 39, 0.97);
+  color: white;
+  box-shadow: 0 0 35px #b77aff33;
+  text-align: center;
+  direction: rtl;
+  font-family: inherit;
+}
+
+.director-panel[hidden],
+.director-launch[hidden] {
+  display: none;
+}
+
+.director-panel h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+  color: white;
+}
+
+.director-panel p {
+  margin: 0 0 18px;
+  color: #e1d2eb;
+  font-size: 15px;
+}
+
+.director-timeline {
+  width: 100%;
+  accent-color: #c994ff;
+  cursor: pointer;
+  direction: ltr;
+}
+
+.director-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0 18px;
+  direction: ltr;
+  font-size: 13px;
+  color: #dfbaff;
+}
+
+.director-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.director-actions button {
+  padding: 10px 20px;
+  border: 1px solid #c994ff;
+  border-radius: 10px;
+  background: #493257;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.director-panel button:focus-visible,
+.director-launch:focus-visible,
+.director-timeline:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}.pointer-glow {
+  display: none !important;
+}#logo-intro,
+#logo-intro.is-active {
+  display: none !important;
+}
+
+body .hero .hero-logo {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+body.intro-playing .site-header,
+body.intro-playing .site-header *,
+body.intro-playing .hero,
+body.intro-playing .hero *,
+body.intro-playing .hero::before,
+body.intro-playing .hero::after {
+  animation-play-state: running !important;
+}body .hero .hero-logo {
+  visibility: visible !important;
+  animation: logo-enter 1.2s ease-out both !important;
+}
+
+@keyframes logo-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .hero .hero-logo {
+    animation: none !important;
+  }
+}body .hero .hero-logo {
+  visibility: visible !important;
+  animation: home-logo-enter 1.2s ease-out both !important;
+}
+
+@keyframes home-logo-enter {
+  from {
+    translate: 0 50px;
+    scale: 0.85;
+  }
+
+  to {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .hero .hero-logo {
+    animation: none !important;
+  }
+}.director-launch {
+  display: none !important;
+}body .hero .hero-logo {
+  transition: scale 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .hero .hero-logo:hover {
+    scale: 1.08 !important;
+  }
+}body .hero .hero-logo {
+  scale: 1;
+  animation-fill-mode: backwards !important;
+  transition: scale 0.7s ease-in-out !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .hero .hero-logo:hover {
+    scale: 1.03 !important;
+  }
+}body .hero .hero-logo {
+  scale: 1;
+  animation-fill-mode: backwards !important;
+  transition: scale 0.3s ease !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body .hero .hero-logo:hover {
+    scale: 1.08 !important;
+  }
+}
